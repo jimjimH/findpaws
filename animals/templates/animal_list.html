@@ -1,39 +1,32 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 <table border="1px solid black">
     <tr>
-        <th>id</th>
-        <th>id_number</th>
-        <th>gender</th>
-        <th>age</th>
-        <th>fur_color</th>
-        <th>body_size</th>
-        <th>weight</th>
-        <th>description</th>
-        <th>breed</th>
-        <th>species</th>
+        <th>picture</th>
+        <th>infomartion</th>
     </tr>
-{% for animal in animals %}
+    {% for animal in animals %}
     <tr>
-        <td>{{ animal.id }}</td>
-        <td>{{ animal.id_number }}</td>
-        <td>{{ animal.gender }}</td>
-        <td>{{ animal.age|floatformat }}</td>
-        <td>{{ animal.fur_color }}</td>
-        <td>{{ animal.body_size }}</td>
-        <td>{{ animal.weight|floatformat }}</td>
-        <td>{{ animal.description }}</td>
-        <td>{{ animal.breed.name }}</td>
-        <td>{{ animal.breed.species }}</td>
-        <td><a href="{% %}%"></a></td>
+        {% for photo in animal.photo_set.all %}
+        {% if forloop.first %}
+        <td>
+            <a href="{{ animal.get_absolute_url }}">
+                <img src="{{ photo.url }}" alt="picture of {{ animal.id}}">
+            </a><br>
+            點擊圖片看仔細～
+        </td>
+        {% endif %}
+        {% endfor %}
+        <td>
+            id: {{ animal.id }}<br>
+            species: {{ animal.breed.species.name }}<br>
+            breed: {{ animal.breed.name }}<br>
+            genger: {{ animal.gender }}
+        </td>
     </tr>
     {% endfor %}
 </table>
 {% endblock %}
-
-<tr>
-    <td>
-
-    </td>
-</tr>

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<table border="1px solid black">
+    {% for photo in animal.photo_set.all %}
+        <img src="{{ photo.url }}" alt="picture of {{ animal.id}}"></td>
+        {% endfor %}
+    <tr>
+        <th>id</th>
+        <td>{{ animal.id }}</td>
+    </tr>
+    <tr>
+        <th>id_number</th>
+        <td>{{ animal.id_number }}</td>
+    </tr>
+    <tr>
+        <th>species</th>
+        <td>{{ animal.breed.species.name }}</td>
+    </tr>
+    <tr>
+        <th>breed</th>
+        <td>{{ animal.breed.name }}</td>
+    </tr>
+    <tr>
+        <th>gender</th>
+        <td>{{ animal.gender }}</td>
+    </tr>
+    <tr>
+        <th>age</th>
+        <td>{{ animal.age|floatformat|add:' yrs' }}</td>
+    </tr>
+    <tr>
+        <th>body_size</th>
+        <td>{{ animal.body_size }}</td>
+    </tr>
+    <tr>
+        <th>weight</th>
+        <td>{{ animal.weight|floatformat|add:' kgs' }}</td>
+    </tr>
+    <tr>
+        <th>fur_color</th>
+        <td>{{ animal.fur_color }}</td>
+    </tr>
+    <tr>
+        <th>description</th>
+        <td>{{ animal.description }}</td>
+    </tr>
+</table>
+{% endblock %}

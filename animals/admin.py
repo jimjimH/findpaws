@@ -30,6 +30,7 @@ class PhotoAdmin(admin.ModelAdmin):
         'id',
         'animal_id',
         'description',
+        'url',
     ]
 
 admin.site.register(Species, SpeciesAdmin)

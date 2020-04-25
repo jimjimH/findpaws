@@ -1,6 +1,5 @@
 from django.db import models
-
-# Create your models here.
+from django.urls import reverse
 
 
 class TimeStampMixin(models.Model):
@@ -45,13 +44,16 @@ class Animal(TimeStampMixin):
     note = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
-        return self.name
+        return str(self.id) + self.name
+
+    def get_absolute_url(self):
+        return reverse("animals:animal_detail", kwargs={"id": self.id})
 
 
 class Photo(TimeStampMixin):
     animal = models. ForeignKey(Animal, on_delete=models.CASCADE)
     description = models.CharField(max_length=200, blank=True)
-    url = models.URLField()
+    url = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.description
+        return self.url
