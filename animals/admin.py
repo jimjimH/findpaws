@@ -1,5 +1,12 @@
 from django.contrib import admin
-from .models import Species, Breed, Animal, Photo
+from .models import (
+    Species, 
+    Breed, 
+    Animal, 
+    Photo, 
+    Contact, 
+    Footprint,
+)
 
 # Register your models here.
 class SpeciesAdmin(admin.ModelAdmin):
@@ -33,7 +40,29 @@ class PhotoAdmin(admin.ModelAdmin):
         'url',
     ]
 
+class ContactAdmin(admin.ModelAdmin):
+    list_display = [
+        'id',
+        'identity',
+        'name',
+        'location',
+        'phone',
+    ]
+
+class FootprintAdmin(admin.ModelAdmin):
+    list_display = [
+        'animal_id',
+        'contact_id',
+        'status',
+        'origin',
+        'location',
+        'start_date',
+        'end_date',
+    ]
+
 admin.site.register(Species, SpeciesAdmin)
 admin.site.register(Breed, BreedAdmin)
 admin.site.register(Animal, AnimalAdmin)
 admin.site.register(Photo, PhotoAdmin)
+admin.site.register(Contact, ContactAdmin)
+admin.site.register(Footprint, FootprintAdmin)

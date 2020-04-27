@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404
 from django.http import JsonResponse
-from animals.models import Animal, Breed, Species, Photo
+from animals.models import Animal, Breed, Species, Photo, Contact, Footprint
 from django.core import serializers
 
 #For develop/debug
