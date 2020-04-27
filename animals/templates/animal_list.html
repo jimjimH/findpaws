@@ -10,21 +10,25 @@
     </tr>
     {% for animal in animals %}
     <tr>
-        {% for photo in animal.photo_set.all %}
-        {% if forloop.first %}
         <td>
+        {% if animal.photo_set.all %}
             <a href="{{ animal.get_absolute_url }}">
-                <img src="{{ photo.url }}" alt="picture of {{ animal.id}}">
+                <img src="{{ animal.photo_set.first.url }}" alt="picture of {{ animal.id }}">
             </a><br>
             點擊圖片看仔細～
-        </td>
+        {% else %}
+            no picture<br>
+            <a href="{{ animal.get_absolute_url }}">
+                click for more detail
+            </a><br>
         {% endif %}
-        {% endfor %}
+        </td>
         <td>
             id: {{ animal.id }}<br>
             species: {{ animal.breed.species.name }}<br>
             breed: {{ animal.breed.name }}<br>
-            genger: {{ animal.gender }}
+            genger: {{ animal.gender }}<br>
+            location: {{ animal.footprint_set.first.location}}
         </td>
     </tr>
     {% endfor %}

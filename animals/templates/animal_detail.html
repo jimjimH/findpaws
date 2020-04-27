@@ -4,9 +4,15 @@
 
 {% block content %}
 <table border="1px solid black">
-    {% for photo in animal.photo_set.all %}
-        <img src="{{ photo.url }}" alt="picture of {{ animal.id}}"></td>
-        {% endfor %}
+    {% for photo in photos %}
+    <img src="{{ photo.url }}" alt="picture of {{ animal.id}}"></td>
+    {% empty%}
+    <p>no picture</p>
+    {% endfor %}
+    <tr>
+        <th>status</th>
+        <td>{{ footprint.status }}</td>
+    </tr>
     <tr>
         <th>id</th>
         <td>{{ animal.id }}</td>
@@ -47,5 +53,33 @@
         <th>description</th>
         <td>{{ animal.description }}</td>
     </tr>
+    {% if footprint %}
+    <tr>
+        <th>start date</th>
+        <td>{{ footprint.start_date }}</td>
+    </tr>
+    <tr>
+        <th>location</th>
+        <td>{{ footprint.location }}</td>
+    </tr>
+    <tr>
+        <th>origin</th>
+        <td>{{ footprint.origin }}</td>
+    </tr>
+    {% endif %}
+    {% if contact %}
+    <tr>
+        <th>contact name</th>
+        <td>{{ contact.name }}</td>
+    </tr>
+    <tr>
+        <th>contact phone</th>
+        <td>{{ contact.phone }}</td>
+    </tr>
+    <tr>
+        <th>contact address</th>
+        <td>{{ contact.address }}</td>
+    </tr>
+    {% endif %}
 </table>
 {% endblock %}

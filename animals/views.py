@@ -19,8 +19,19 @@ def animal_list_view(request):
 
 def animal_detail_view(request, id):
     animal = get_object_or_404(Animal, id=id)
+    photos = animal.photo_set.all()
+    try:
+        footprint = animal.footprint_set.latest('created_at')
+        contact = footprint.contact
+    except:
+        footprint = {}
+        contact = {}
+
     context = {
-        'animal': animal
+        'animal': animal,
+        'photos': photos,
+        'contact': contact,
+        'footprint': footprint,
     }
     return render(request, 'animal_detail.html', context)
 
